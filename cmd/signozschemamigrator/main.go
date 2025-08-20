@@ -11,7 +11,7 @@ import (
 	"strings"
 
 	"github.com/ClickHouse/clickhouse-go/v2"
-	schema_migrator "github.com/SigNoz/signoz-otel-collector/cmd/signozschemamigrator/schema_migrator"
+	schema_migrator "github.com/fobt/signoz-otel-collector/cmd/signozschemamigrator/schema_migrator"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
 	"github.com/spf13/viper"

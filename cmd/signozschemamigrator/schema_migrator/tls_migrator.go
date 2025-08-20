@@ -1,6 +1,6 @@
 // Package tlsmigrator provides a wrapper around the SignOz schema migrator
 // with enhanced TLS support and additional functionality for use as a library.
-package tlsmigrator
+package schemamigrator
 
 import (
 	"context"
@@ -11,7 +11,6 @@ import (
 	"os"
 
 	"github.com/ClickHouse/clickhouse-go/v2"
-	schema_migrator "github.com/SigNoz/signoz-otel-collector/cmd/signozschemamigrator/schema_migrator"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 )
@@ -128,13 +127,13 @@ func (tm *TLSMigrator) RunSyncMigrate(args *MigrateArgs) error {
 	}
 	tm.logger.Info("Opened connection successfully")
 
-	manager, err := schema_migrator.NewMigrationManager(
-		schema_migrator.WithClusterName(args.ClusterName),
-		schema_migrator.WithReplicationEnabled(args.ReplicationEnabled),
-		schema_migrator.WithConn(conn),
-		schema_migrator.WithConnOptions(*opts),
-		schema_migrator.WithLogger(tm.logger),
-		schema_migrator.WithDevelopment(args.Development),
+	manager, err := NewMigrationManager(
+		WithClusterName(args.ClusterName),
+		WithReplicationEnabled(args.ReplicationEnabled),
+		WithConn(conn),
+		WithConnOptions(*opts),
+		WithLogger(tm.logger),
+		WithDevelopment(args.Development),
 	)
 	if err != nil {
 		return fmt.Errorf("failed to create migration manager: %w", err)
