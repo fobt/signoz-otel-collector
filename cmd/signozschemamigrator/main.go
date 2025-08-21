@@ -247,7 +247,10 @@ func registerSyncMigrate(cmd *cobra.Command) {
 			})
 		},
 	}
-
+	syncCmd.Flags().String("cert-dir", "", "Directory containing TLS certificates")
+	syncCmd.Flags().String("cert-name", "", "Name of the TLS certificate file")
+	syncCmd.Flags().String("key-name", "", "Name of the TLS private key file")
+	syncCmd.Flags().String("ca-name", "", "Name of the CA certificate file")
 	syncCmd.Flags().StringVar(&upVersions, "up", "", "Up migrations to run, comma separated. Leave empty to run all up migrations")
 	syncCmd.Flags().StringVar(&downVersions, "down", "", "Down migrations to run, comma separated. Must provide down migrations explicitly to run")
 
